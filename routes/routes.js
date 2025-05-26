@@ -27,7 +27,7 @@ route.post(
   limiter,
   UserLogin
 );
-route.post("/refresh", AuthUserRefreshToken, AuthUserAccessToken);
+route.post("/RefreshToken", AuthUserRefreshToken);
 
 //datas
 
