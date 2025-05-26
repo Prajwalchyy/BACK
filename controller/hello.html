@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Table with Editable Form</title>
+    <style>
+      .form-row {
+        display: none;
+        transition: all 0.3s ease;
+      }
+
+      .form-row.show {
+        display: table-row;
+      }
+
+      form input {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h2>User Table</h2>
+      <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- User Row -->
+          <tr>
+            <td>John Doe</td>
+            <td>25</td>
+            <td>New York</td>
+            <td>
+              <button onclick="toggleForm(this)">Edit</button>
+              <button>Submit</button>
+              <button>Delete</button>
+            </td>
+          </tr>
+
+          <tr class="form-row">
+            <td colspan="4">
+              <form onsubmit="event.preventDefault(); alert('Saved!')">
+                <label
+                  >Name:
+                  <input type="text" name="name" value="John Doe" /></label
+                ><br />
+                <label>Age: <input type="number" name="age" value="25" /></label
+                ><br />
+                <label
+                  >Address:
+                  <input type="text" name="address" value="New York" /></label
+                ><br />
+                <button type="submit">Save</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function toggleForm(button) {
+        const currentRow = button.closest("tr");
+        const nextRow = currentRow.nextElementSibling;
+        nextRow.classList.toggle("show");
+      }
+    </script>
+  </body>
+</html>
