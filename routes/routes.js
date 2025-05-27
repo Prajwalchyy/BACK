@@ -10,10 +10,15 @@ import {
   AuthUserAccessToken,
   AuthUserRefreshToken,
 } from "../middleware/authUser.js";
+import { authorizeRole } from "../middleware/roleAllowed/authorizeUserCheck.js";
 
 const route = express.Router();
 
-//Auth
+//Auth Token
+
+route.post("/RefreshToken", AuthUserRefreshToken);
+
+//Auth cardinals
 route.post(
   "/Users/UserRegister",
   UserRegisterValidation,
@@ -27,9 +32,8 @@ route.post(
   limiter,
   UserLogin
 );
-route.post("/RefreshToken", AuthUserRefreshToken);
 
-//datas
+//Tests
 
-route.get("/Test", AuthUserAccessToken, Test);
+route.get("/Test", AuthUserAccessToken, authorizeRole("admin","author"), Test);
 export default route;

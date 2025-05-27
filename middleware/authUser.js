@@ -9,23 +9,24 @@ export const AuthUserAccessToken = (req, res, next) => {
       .status(401)
       .json({ message: "Authentication required. Please log in." });
   }
-
   try {
     const VerifyUser = jwt.verify(AccessTokenCookie, "AccessSecretKey");
     req.userid = VerifyUser.userid;
+    req.userrole = VerifyUser.userrole;
     next();
   } catch (error) {
     // console.log(error);
     return res.status(403).json({ message: "Token is invalid or expired" });
   }
 };
-
 //refress ********************************************************************
 
 export const AuthUserRefreshToken = (req, res, next) => {
   const RefreshTokenCookie = req.cookies.RefreshToken;
   if (!RefreshTokenCookie) {
-    return res.status(401).json({ message: "Authentication required. Please log in 2." });
+    return res
+      .status(401)
+      .json({ message: "Authentication required. Please log in 2." });
   }
 
   try {
