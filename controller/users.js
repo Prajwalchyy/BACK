@@ -2,18 +2,20 @@ import { validationResult } from "express-validator";
 import db from "../database/dbconfig.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import nodemon from "nodemon";
 
 export const UserRegister = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   try {
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
     const InsertUserQuery =
-      "INSERT INTO users (username,useremail,userpassword) VALUES (?,?,?)";
+      "INSERT INTO users (username,useremail,userrole,userpassword) VALUES (?,?,?,?)";
 
     const [result] = await db.query(InsertUserQuery, [
       name,
       email,
+      role,
       hashPassword,
     ]);
 
@@ -39,29 +41,45 @@ export const UserRegister = async (req, res) => {
 };
 
 export const UserLogin = async (req, res) => {
-  const { email, password } = req.body;
-
-  //   console.log(email)
-
+  const { email, password, role } = req.body;
   try {
     const CheckUserQuery =
-      "SELECT * FROM users WHERE useremail=? AND userpassword=?";
-    const [result] = await db.query(CheckUserQuery, [email, password]);
-
-    if (result.length === 0) {
-      return res
-        .status(400)
-        .json({ message: "Username or Password didn't match" });
-    }
-
+      "SELECT * FROM users WHERE useremail=? AND userrole=?";
+    const [result] = await db.query(CheckUserQuery, [email, role]);
+    const LoginRemaining = req.rateLimit.remaining; //req from loglimit
+    const notmatch = () => {
+      return res.status(400).json({
+        message: "Username or Password didn't match",
+        loglimit: LoginRemaining,
+      });
+    };
     const user = result[0];
-    const AccessToken = jwt.sign({ userid: user.userid }, "AccessSecretKey", {
-      expiresIn: "60m",
-    });
+    if (!user) {
+      return notmatch();
+    }
+    const DecodePassword = await bcrypt.compare(password, user.userpassword);
+    if (!DecodePassword) {
+      return notmatch();
+    }
+    // console.log(user);
 
-    const RefreshToken = jwt.sign({ userid: user.userid }, "RefreshSecretKey", {
-      expiresIn: "7d",
-    });
+    //JWT cookies and Tokens
+
+    const AccessToken = jwt.sign(
+      { userid: user.userid, userrole: user.userrole },
+      "AccessSecretKey",
+      {
+        expiresIn: "60m",
+      }
+    );
+
+    const RefreshToken = jwt.sign(
+      { userid: user.userid, userrole: user.userrole },
+      "RefreshSecretKey",
+      {
+        expiresIn: "7d",
+      }
+    );
     //store token to cookie
     res.cookie("AccessToken", AccessToken, {
       httponly: true,

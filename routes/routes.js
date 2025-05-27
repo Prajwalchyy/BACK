@@ -15,13 +15,13 @@ const route = express.Router();
 
 //Auth
 route.post(
-  "/UserRegister",
+  "/Users/UserRegister",
   UserRegisterValidation,
   ValidationError,
   UserRegister
 );
 route.post(
-  "/UserLogin",
+  "/Users/UserLogin",
   UserloginValidation,
   ValidationError,
   limiter,

@@ -3,8 +3,9 @@ import rateLimit from "express-rate-limit";
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000,
   max: 5,
+  standardHeaders: true,
   keyGenerator: (req, res) => {
-    console.log(req.body.email);
+    // console.log(req.body.email);
     return req.body.email;
   },
   handler: (req, res) => {
