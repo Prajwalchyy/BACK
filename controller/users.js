@@ -1,8 +1,6 @@
-import { validationResult } from "express-validator";
 import db from "../database/dbconfig.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import nodemon from "nodemon";
 
 export const UserRegister = async (req, res) => {
   const { name, email, password, role } = req.body;

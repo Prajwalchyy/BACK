@@ -1,39 +1,29 @@
 import express from "express";
+import { CreatePosts } from "../controller/posts.js";
 import { Test, UserLogin, UserRegister } from "../controller/users.js";
-import ValidationError from "../middleware/validationError.js";
-import {
-  UserloginValidation,
-  UserRegisterValidation,
-} from "../validation/validationResult.js";
-import limiter from "../middleware/loginLimit.js";
 import {
   AuthUserAccessToken,
   AuthUserRefreshToken,
 } from "../middleware/authUser.js";
-import { authorizeRole } from "../middleware/roleAllowed/authorizeUserCheck.js";
+import { AuthorizeRole } from "../middleware/roleAllowed/AuthorizeUserCheck.js";
+import {
+  CreatePostChain,
+  UserLoginChain,
+  UserRegisterChain,
+} from "./chainMiddleWares/middlechain.js";
 
 const route = express.Router();
 
 //Auth Token
-
 route.post("/RefreshToken", AuthUserRefreshToken);
 
-//Auth cardinals
-route.post(
-  "/Users/UserRegister",
-  UserRegisterValidation,
-  ValidationError,
-  UserRegister
-);
-route.post(
-  "/Users/UserLogin",
-  UserloginValidation,
-  ValidationError,
-  limiter,
-  UserLogin
-);
+//UserAuth
+route.post("/Users/UserRegister", UserRegisterChain, UserRegister);
+route.post("/Users/UserLogin", UserLoginChain, UserLogin);
+
+//posts
+route.post("/Posts/CreatePost", CreatePostChain, CreatePosts);
 
 //Tests
-
-route.get("/Test", AuthUserAccessToken, authorizeRole("admin","author"), Test);
+route.get("/Test", AuthUserAccessToken, AuthorizeRole("admin", "author"), Test);
 export default route;
