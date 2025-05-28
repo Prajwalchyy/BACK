@@ -1,8 +1,8 @@
 import db from "../database/dbconfig.js";
 
 export const CreatePosts = async (req, res) => {
-  const { title, content} = req.body;
-  const userid = req.userid;//fetched from authuser
+  const { title, content } = req.body;
+  const userid = req.userid; //fetched from authuser
   // console.log(userid);
   try {
     const CreatePostsQuery =
@@ -14,5 +14,54 @@ export const CreatePosts = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "error in create posts" }, error);
+  }
+};
+
+export const GetAllPosts = async (req, res) => {
+  try {
+    const GetPostsQuery = "SELECT * FROM posts";
+    const [result] = await db.query(GetPostsQuery);
+    res.status(200).json({ message: "All Posts Fetched Sucessfully", result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Probelm in GetAllPost" }, error);
+  }
+};
+
+export const DeletePosts = async (req, res, next) => {
+  const PostId = req.params.id;
+  const UserRole = req.userrole;
+  const Userid = req.userid;
+
+  // console.log("PostID=", PostId, "UserID=", Userid, "UserRole=", UserRole);
+  try {
+    const CheckPostUserIdQuery = "SELECT  userid FROM posts WHERE posts_id=?";
+    const [checkResult] = await db.query(CheckPostUserIdQuery, [PostId]);
+
+    if (checkResult.length === 0) {
+      return res.status(404).json({ Message: "Post Not Found" });
+    }
+    const CheckUserId = checkResult[0].userid;
+    // console.log(CheckUserId);
+
+    const Owner = CheckUserId === Userid;
+    const Admin = UserRole === "admin";
+    if (Owner || Admin) {
+      try {
+        const DeletePostsQuery = "DELETE FROM posts WHERE posts_id=?";
+        const [DeleteResult] = await db.query(DeletePostsQuery, [PostId]);
+        res.status(200).json({ message: "Post deleted sucessfylly" });
+      } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Problem in DeletePosts", error });
+      }
+    } else {
+      res.status(403).json({ message: "Your are not allowed to delete" });
+    }
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ message: "Problem in SelectCheck DeletePosts", error });
   }
 };

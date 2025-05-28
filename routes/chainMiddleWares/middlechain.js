@@ -8,8 +8,6 @@ import {
   UserRegisterValidation,
 } from "../../validation/validationResult.js";
 
-
-
 //authUsers
 export const UserRegisterChain = [UserRegisterValidation, ValidationError];
 export const UserLoginChain = [UserloginValidation, ValidationError, limiter];
@@ -18,6 +16,14 @@ export const UserLoginChain = [UserloginValidation, ValidationError, limiter];
 export const CreatePostChain = [
   CreatePostsValidation,
   ValidationError,
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author"),
+];
+export const GetAllPostsChain = [
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
+];
+export const DeletePostChain = [
   AuthUserAccessToken,
   AuthorizeRole("admin", "author"),
 ];

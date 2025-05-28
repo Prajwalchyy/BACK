@@ -1,13 +1,11 @@
 import express from "express";
-import { CreatePosts } from "../controller/posts.js";
-import { Test, UserLogin, UserRegister } from "../controller/users.js";
-import {
-  AuthUserAccessToken,
-  AuthUserRefreshToken,
-} from "../middleware/authUser.js";
-import { AuthorizeRole } from "../middleware/roleAllowed/AuthorizeUserCheck.js";
+import { CreatePosts, DeletePosts, GetAllPosts } from "../controller/posts.js";
+import { UserLogin, UserRegister } from "../controller/users.js";
+import { AuthUserRefreshToken } from "../middleware/authUser.js";
 import {
   CreatePostChain,
+  DeletePostChain,
+  GetAllPostsChain,
   UserLoginChain,
   UserRegisterChain,
 } from "./chainMiddleWares/middlechain.js";
@@ -23,7 +21,7 @@ route.post("/Users/UserLogin", UserLoginChain, UserLogin);
 
 //posts
 route.post("/Posts/CreatePost", CreatePostChain, CreatePosts);
+route.get("/Posts/GetAllPosts", GetAllPostsChain, GetAllPosts);
+route.delete("/Posts/DeletePost/:id", DeletePostChain, DeletePosts);
 
-//Tests
-route.get("/Test", AuthUserAccessToken, AuthorizeRole("admin", "author"), Test);
 export default route;
