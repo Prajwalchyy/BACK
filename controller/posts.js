@@ -71,7 +71,7 @@ export const GetOneUserPosts = async (req, res) => {
       .json({ message: "Posts Fetched Sucessfully", result });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Problem in GetOneUserPosts" });
+    return res.status(500).json({ message: "Problem in GetOneUser" });
   }
 };
 
@@ -86,37 +86,28 @@ export const UpdatePost = async (req, res) => {
     const [CheckUserResult] = await db.query(ChecKUserQuery, [PostId]);
 
     if (!CheckUserResult.length) {
-      return res.status(404).json({ Message: "Post Not Found" });
+      return res.status(404).json({ message: "Post Not Found" });
     }
-
     const RequestUserId = CheckUserResult[0].userid;
     // console.log(RequestUserId);
     const Owner = RequestUserId === UserId;
-    if (Owner) {
-      try {
-        const UpdatePostQuery =
-          "Update posts SET posts_title=?, posts_content=? WHERE posts_id=?";
-        const [UpdateResult] = await db.query(UpdatePostQuery, [
-          title,
-          content,
-          PostId,
-        ]);
-
-        return res
-          .status(200)
-          .json({ message: "Post Updated Sucessfully", UpdateResult });
-      } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: "Problem in updatePost " });
-      }
-    } else {
-      return res.status(403).json({ Message: "you are unauthorize to update" });
+    if (!Owner) {
+      return res.status(403).json({ message: "you are unauthorize to update" });
     }
+    const UpdatePostQuery =
+      "Update posts SET posts_title=?, posts_content=? WHERE posts_id=?";
+    const [UpdateResult] = await db.query(UpdatePostQuery, [
+      title,
+      content,
+      PostId,
+    ]);
+
+    return res
+      .status(200)
+      .json({ message: "Post Updated Sucessfully", UpdateResult });
   } catch (error) {
     console.log(error);
-    return res
-      .status(500)
-      .json({ mesage: "Problem in CheckUser in UpdatePost" });
+    return res.status(500).json({ mesage: "Problem in UpdatePost" });
   }
 };
 
@@ -132,28 +123,21 @@ export const DeletePosts = async (req, res, next) => {
     const [checkResult] = await db.query(CheckPostUserIdQuery, [PostId]);
 
     if (checkResult.length === 0) {
-      return res.status(404).json({ Message: "Post Not Found" });
+      return res.status(404).json({ message: "Post Not Found" });
     }
     const OwnerId = checkResult[0].userid;
     // console.log(CheckUserId);
     const Owner = OwnerId === Userid;
     const Admin = UserRole === "admin";
-    if (Owner || Admin) {
-      try {
-        const DeletePostsQuery = "DELETE FROM posts WHERE posts_id=?";
-        const [DeleteResult] = await db.query(DeletePostsQuery, [PostId]);
-        res.status(200).json({ message: "Post deleted sucessfylly" });
-      } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Problem in DeletePosts", error });
-      }
-    } else {
-      return res.status(403).json({ Message: "you are unauthorize to Delete" });
+    if (!Owner && !Admin) {
+      return res.status(403).json({ message: "you are unauthorize to Delete" });
     }
+
+    const DeletePostsQuery = "DELETE FROM posts WHERE posts_id=?";
+    const [DeleteResult] = await db.query(DeletePostsQuery, [PostId]);
+    res.status(200).json({ message: "Post deleted sucessfylly" });
   } catch (error) {
     console.log(error);
-    res
-      .status(500)
-      .json({ message: "Problem in SelectCheck DeletePosts", error });
+    res.status(500).json({ message: "Problem in DeletePosts", error });
   }
 };
