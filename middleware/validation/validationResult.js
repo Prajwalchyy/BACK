@@ -17,3 +17,18 @@ export const CreatePostsValidation = [
   body("title").notEmpty().withMessage("Title is required"),
   body("content").notEmpty().withMessage("Content are required"),
 ];
+export const UpdatePostsValidation = [
+  body("title").notEmpty().withMessage("Title is required"),
+  body("content").notEmpty().withMessage("Content is required"),
+];
+
+export const PostCommentValidation = [
+  body("comment").notEmpty().withMessage("Comment is required"),
+  body("postid")
+    .notEmpty()
+    .withMessage("postid required")
+    .isNumeric()
+    .withMessage("postid must be a number")
+    .isLength({ max: 500 })
+    .withMessage("The comment size is 500 only"),
+];

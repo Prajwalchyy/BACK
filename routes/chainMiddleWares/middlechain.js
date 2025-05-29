@@ -4,6 +4,8 @@ import { AuthorizeRole } from "../../middleware/roleAllowed/AuthorizeUserCheck.j
 import ValidationError from "../../middleware/validation/validationError.js";
 import {
   CreatePostsValidation,
+  PostCommentValidation,
+  UpdatePostsValidation,
   UserloginValidation,
   UserRegisterValidation,
 } from "../../middleware/validation/validationResult.js";
@@ -15,6 +17,12 @@ export const UserLoginChain = [UserloginValidation, ValidationError, limiter];
 // Posts
 export const CreatePostChain = [
   CreatePostsValidation,
+  ValidationError,
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author"),
+];
+export const UpdatePostChain = [
+  UpdatePostsValidation,
   ValidationError,
   AuthUserAccessToken,
   AuthorizeRole("admin", "author"),
@@ -31,11 +39,16 @@ export const GetOneUserPostsChain = [
   AuthUserAccessToken,
   AuthorizeRole("admin", "author"),
 ];
-export const UpdatePostChain = [
-  AuthUserAccessToken,
-  AuthorizeRole("admin", "author"),
-];
+
 export const DeletePostChain = [
   AuthUserAccessToken,
   AuthorizeRole("admin", "author"),
+];
+
+//Post Comments
+export const PostCommentChain = [
+  PostCommentValidation,
+  ValidationError,
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
 ];

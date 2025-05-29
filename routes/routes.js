@@ -5,6 +5,7 @@ import {
   GetAllPosts,
   GetOnePost,
   GetOneUserPosts,
+  PostComment,
   UpdatePost,
 } from "../controller/posts.js";
 import { UserLogin, UserRegister } from "../controller/users.js";
@@ -15,6 +16,7 @@ import {
   GetAllPostsChain,
   GetOnePostChain,
   GetOneUserPostsChain,
+  PostCommentChain,
   UpdatePostChain,
   UserLoginChain,
   UserRegisterChain,
@@ -36,4 +38,8 @@ route.get("/Posts/GetOnePost/:id", GetOnePostChain, GetOnePost);
 route.get("/Posts/GetOneUserPosts", GetOneUserPostsChain, GetOneUserPosts);
 route.put("/Posts/UpdatePost/:id", UpdatePostChain, UpdatePost);
 route.delete("/Posts/DeletePost/:id", DeletePostChain, DeletePosts);
+
+//posts Comments
+
+route.post("/Posts/Comment/PostComment", PostCommentChain, PostComment);
 export default route;

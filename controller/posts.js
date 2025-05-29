@@ -44,7 +44,6 @@ export const GetOnePost = async (req, res) => {
     if (result.length === 0) {
       return res.status(404).json({ message: "Post Not Found" });
     }
-
     return res
       .status(200)
       .json({ message: " One Post Get sucessfully", result });
@@ -139,5 +138,34 @@ export const DeletePosts = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Problem in DeletePosts", error });
+  }
+};
+
+//Post Comment________________________________________________________________________________________________
+export const PostComment = async (req, res) => {
+  const { comment, postid } = req.body;
+  const UserId = req.userid;
+
+  try {
+    const PostIdCheckQuery = "SELECT posts_id FROM posts WHERE posts_id=?";
+    const [resultCheckPostId] = await db.query(PostIdCheckQuery, [postid]);
+
+    if (!resultCheckPostId.length) {
+      return res.status(404).json({ message: "Post id not found" });
+    }
+
+    const PostCommentQuery =
+      "INSERT INTO comments (posts_id,userid,comment) VALUES (?,?,?)";
+    const [resultcoment] = await db.query(PostCommentQuery, [
+      postid,
+      UserId,
+      comment,
+    ]);
+    return res
+      .status(200)
+      .json({ message: "Comment posted sucessfully", resultcoment });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Problem in PostComment" });
   }
 };
