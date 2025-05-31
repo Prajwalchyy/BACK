@@ -2,7 +2,9 @@ import express from "express";
 import {
   CreatePosts,
   DeletePosts,
+  GetAllComment,
   GetAllPosts,
+  GetMineComment,
   GetOnePost,
   GetOneUserPosts,
   PostComment,
@@ -14,6 +16,7 @@ import {
   CreatePostChain,
   DeletePostChain,
   GetAllPostsChain,
+  GetMyCommentChain,
   GetOnePostChain,
   GetOneUserPostsChain,
   PostCommentChain,
@@ -41,5 +44,8 @@ route.delete("/Posts/DeletePost/:id", DeletePostChain, DeletePosts);
 
 //posts Comments
 
-route.post("/Posts/Comment/PostComment", PostCommentChain, PostComment);
+route.post("/Posts/Comment/Create/:postid", PostCommentChain, PostComment);
+route.get("/Posts/Comment/All/:postid", GetAllComment);
+route.get("/Posts/Comment/Mine", GetMyCommentChain, GetMineComment);
+
 export default route;

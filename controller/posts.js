@@ -143,12 +143,13 @@ export const DeletePosts = async (req, res, next) => {
 
 //Post Comment________________________________________________________________________________________________
 export const PostComment = async (req, res) => {
-  const { comment, postid } = req.body;
+  const { comment } = req.body;
   const UserId = req.userid;
+  const PostId = req.params.postid;
 
   try {
     const PostIdCheckQuery = "SELECT posts_id FROM posts WHERE posts_id=?";
-    const [resultCheckPostId] = await db.query(PostIdCheckQuery, [postid]);
+    const [resultCheckPostId] = await db.query(PostIdCheckQuery, [PostId]);
 
     if (!resultCheckPostId.length) {
       return res.status(404).json({ message: "Post id not found" });
@@ -157,7 +158,7 @@ export const PostComment = async (req, res) => {
     const PostCommentQuery =
       "INSERT INTO comments (posts_id,userid,comment) VALUES (?,?,?)";
     const [resultcoment] = await db.query(PostCommentQuery, [
-      postid,
+      PostId,
       UserId,
       comment,
     ]);
@@ -167,5 +168,42 @@ export const PostComment = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Problem in PostComment" });
+  }
+};
+
+export const GetAllComment = async (req, res) => {
+  try {
+    const GetAllCommentQuery = "SELECT * FROM comments";
+    const [result] = await db.query(GetAllCommentQuery);
+
+    if (!result.length) {
+      return res.status(404).json({ message: "No comments found" });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "Comment fetched sucessfully", result });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Problem in GetAllComment" });
+  }
+};
+
+export const GetMineComment = async (req, res) => {
+  const AuthUser = req.userid;
+
+  try {
+    const MyCommentQuery = "SELECT * FROM comments WHERE userid=?";
+    const [result] = await db.query(MyCommentQuery, [AuthUser]);
+
+    if (!result.length) {
+      return res.status(404).json({ message: "No Comment found" });
+    }
+    return res
+      .status(200)
+      .json({ message: "My Comment fetched sucessfully", result });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Problem in GetMineComment" });
   }
 };
