@@ -4,6 +4,7 @@ import { AuthorizeRole } from "../../middleware/roleAllowed/authorizeUserCheck.j
 import ValidationError from "../../middleware/validation/validationError.js";
 import {
   CreatePostsValidation,
+  EditCommentValidation,
   PostCommentValidation,
   UpdatePostsValidation,
   UserloginValidation,
@@ -46,14 +47,28 @@ export const DeletePostChain = [
 ];
 
 //Post Comments___________________________________________________________________
+export const PostlikeChain = [
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
+];
 export const PostCommentChain = [
   PostCommentValidation,
   ValidationError,
   AuthUserAccessToken,
   AuthorizeRole("admin", "author", "viewer"),
 ];
+export const EditCommentChain = [
+  EditCommentValidation,
+  ValidationError,
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
+];
 
 export const GetMyCommentChain = [
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
+];
+export const DeleteCommentChain = [
   AuthUserAccessToken,
   AuthorizeRole("admin", "author", "viewer"),
 ];

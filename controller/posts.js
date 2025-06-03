@@ -1,3 +1,4 @@
+import { response } from "express";
 import db from "../database/dbconfig.js";
 
 export const CreatePosts = async (req, res) => {
@@ -141,6 +142,42 @@ export const DeletePosts = async (req, res, next) => {
   }
 };
 
+//Insert Posts Like_______________________________________________________________________________________
+
+export const PostLike = async (req, res) => {
+  const AuthUserId = req.userid;
+  const PostId = req.params.postid;
+
+  try {
+    const CheckLikesQuery = "SELECT * FROM likes WHERE post_id=? AND user_id=?";
+    const [CheckResult] = await db.query(CheckLikesQuery, [PostId, AuthUserId]);
+    console.log(CheckResult);
+
+    if (!CheckResult.length) {
+      const LikeInsertQuery =
+        "INSERT INTO likes (post_id,user_id) VALUES (?,?)";
+      const [LiekdResult] = await db.query(LikeInsertQuery, [
+        PostId,
+        AuthUserId,
+      ]);
+
+      return res.status(200).json({ message: "You liked the post" });
+    } else {
+      const UnLikeQuery = "DELETE FROM likes WHERE post_id=? AND user_id=?";
+      const [ResultUnlike] = await db.query(UnLikeQuery, [PostId, AuthUserId]);
+
+      return res.status(200).json({ message: "You unlike post" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Problem in PostLike" });
+  }
+};
+
+//Count post LIke
+export const CountLikePost = (req, res) => {
+};
+
 //Post Comment________________________________________________________________________________________________
 export const PostComment = async (req, res) => {
   const { comment } = req.body;
@@ -148,7 +185,8 @@ export const PostComment = async (req, res) => {
   const PostId = req.params.postid;
 
   try {
-    const PostIdCheckQuery = "SELECT posts_id FROM posts WHERE posts_id=?";
+    const PostIdCheckQuery =
+      "SELECT posts_id, userid FROM posts WHERE posts_id=?";
     const [resultCheckPostId] = await db.query(PostIdCheckQuery, [PostId]);
 
     if (!resultCheckPostId.length) {
@@ -157,20 +195,74 @@ export const PostComment = async (req, res) => {
 
     const PostCommentQuery =
       "INSERT INTO comments (posts_id,userid,comment) VALUES (?,?,?)";
-    const [resultcoment] = await db.query(PostCommentQuery, [
+    const [resultcomment] = await db.query(PostCommentQuery, [
       PostId,
       UserId,
       comment,
     ]);
-    return res
-      .status(200)
-      .json({ message: "Comment posted sucessfully", resultcoment });
+
+    const RecentCommentId = resultcomment.insertId; //get recently inserted id from insertId
+    const OwnerOfPostUser = resultCheckPostId[0].userid;
+    const Type = "comment";
+
+    //Insert Notification data for comment
+
+    const InsertNotificationQuery =
+      "INSERT INTO notifications (notification_type,notification_receiver_user_id,posts_id,comment_id) VALUES (?,?,?,?)";
+    const [InsertNotificationResult] = await db.query(InsertNotificationQuery, [
+      Type,
+      OwnerOfPostUser,
+      PostId,
+      RecentCommentId,
+    ]);
+    return res.status(200).json({
+      message: "Comment posted sucessfully",
+      PostCommentResult: resultcomment,
+      NotificationResult: InsertNotificationResult,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Problem in PostComment" });
   }
 };
 
+//UPDATE COMMENT__________________________________________________________________________________
+
+export const UpdateComment = async (req, res) => {
+  const { comment } = req.body;
+  const CommentId = req.params.CommentId;
+  const UserId = req.userid;
+
+  try {
+    const CheckUserQuery = "SELECT userid FROM comments WHERE comment_id=?";
+    const [CheckResult] = await db.query(CheckUserQuery, [CommentId]);
+
+    if (!CheckResult.length) {
+      return res.status(404).json({ message: "No User Found" });
+    }
+
+    const CheckUser = CheckResult[0].userid;
+    const OwnerUser = CheckUser === UserId;
+
+    if (!OwnerUser) {
+      return res
+        .status(403)
+        .json({ message: "Unauthorize User cannot edit the comment" });
+    }
+
+    const EditCommentQuery = "UPDATE comments SET comment=? WHERE comment_id=?";
+    const [EditResult] = await db.query(EditCommentQuery, [comment, CommentId]);
+
+    return res
+      .status(200)
+      .json({ message: "Comment update sucessfully", EditResult });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Problem in UpdateComment" });
+  }
+};
+
+//ALL COMMENT _____________________________________________________________________________________
 export const GetAllComment = async (req, res) => {
   try {
     const GetAllCommentQuery = "SELECT * FROM comments";
@@ -189,6 +281,7 @@ export const GetAllComment = async (req, res) => {
   }
 };
 
+// MYCOMMENT_______________________________________________________________________________________
 export const GetMineComment = async (req, res) => {
   const AuthUser = req.userid;
 
@@ -205,5 +298,38 @@ export const GetMineComment = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Problem in GetMineComment" });
+  }
+};
+
+//DELETE COMMENT_____________________________________________________________________________
+
+export const DeleteComment = async (req, res) => {
+  const CommentId = req.params.commmentid;
+  const OwnerId = req.userid;
+  const OwnerRole = req.userrole;
+  // console.log("cid=", CommentId, "OId=", OwnerId, "Role=", OwnerRole);
+  try {
+    const CheckUserQuery = "SELECT userid FROM comments WHERE comment_id=?";
+    const [CheckResult] = await db.query(CheckUserQuery, [CommentId]);
+
+    if (!CheckResult.length) {
+      return res.status(404).json({ message: "No User Found" });
+    }
+
+    const CheckOwnerId = CheckResult[0].userid;
+    const ValidOwner = CheckOwnerId === OwnerId;
+    const admin = OwnerRole === "admin";
+
+    if (!ValidOwner && !admin) {
+      return res.status(403).json({ message: "Unauthorize to delete Comment" });
+    }
+
+    const DeleteQuery = "DELETE FROM comments WHERE comment_id=?";
+    const [DeleteResult] = await db.query(DeleteQuery, [CommentId]);
+
+    return res.status(200).json({ message: "Comment Deleted Sucessfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Problem in DeleteComment" });
   }
 };

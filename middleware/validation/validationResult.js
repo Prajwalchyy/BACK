@@ -24,11 +24,7 @@ export const UpdatePostsValidation = [
 
 export const PostCommentValidation = [
   body("comment").notEmpty().withMessage("Comment is required"),
-  // body("postid")
-  //   .notEmpty()
-  //   .withMessage("postid required")
-  //   .isNumeric()
-  //   .withMessage("postid must be a number")
-  //   .isLength({ max: 500 })
-  //   .withMessage("The comment size is 500 only"),
+];
+export const EditCommentValidation = [
+  body("comment").notEmpty().withMessage("Comment is required"),
 ];
