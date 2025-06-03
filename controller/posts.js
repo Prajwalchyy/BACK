@@ -143,7 +143,7 @@ export const DeletePosts = async (req, res, next) => {
 };
 
 //Insert Posts Like_______________________________________________________________________________________
-
+//TODO: remaining send notification form like post
 export const PostLike = async (req, res) => {
   const AuthUserId = req.userid;
   const PostId = req.params.postid;
@@ -151,7 +151,7 @@ export const PostLike = async (req, res) => {
   try {
     const CheckLikesQuery = "SELECT * FROM likes WHERE post_id=? AND user_id=?";
     const [CheckResult] = await db.query(CheckLikesQuery, [PostId, AuthUserId]);
-    console.log(CheckResult);
+    // console.log(CheckResult);
 
     if (!CheckResult.length) {
       const LikeInsertQuery =
@@ -161,7 +161,9 @@ export const PostLike = async (req, res) => {
         AuthUserId,
       ]);
 
-      return res.status(200).json({ message: "You liked the post" });
+      return res
+        .status(200)
+        .json({ message: "You liked the post", LiekdResult });
     } else {
       const UnLikeQuery = "DELETE FROM likes WHERE post_id=? AND user_id=?";
       const [ResultUnlike] = await db.query(UnLikeQuery, [PostId, AuthUserId]);
@@ -175,7 +177,21 @@ export const PostLike = async (req, res) => {
 };
 
 //Count post LIke
-export const CountLikePost = (req, res) => {
+export const CountLikePost = async (req, res) => {
+  const PostId = req.params.postid;
+
+  try {
+    const CountQuery =
+      "SELECT COUNT(*) AS TotalLikes FROM likes WHERE post_id = ?";
+    const [resultcount] = await db.query(CountQuery, [PostId]);
+    console.log(resultcount);
+    return res
+      .status(200)
+      .json({ message: "liked conuntd sucessfully", resultcount });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "problem in CountLikePost" });
+  }
 };
 
 //Post Comment________________________________________________________________________________________________
@@ -333,3 +349,6 @@ export const DeleteComment = async (req, res) => {
     return res.status(500).json({ message: "Problem in DeleteComment" });
   }
 };
+
+//
+//TODO:notification

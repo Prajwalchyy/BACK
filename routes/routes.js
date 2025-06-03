@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  CountLikePost,
   CreatePosts,
   DeleteComment,
   DeletePosts,
@@ -51,6 +52,7 @@ route.delete("/Posts/DeletePost/:id", DeletePostChain, DeletePosts);
 //posts Like and  Comments__________________________________________________________________________________________
 
 route.post("/Posts/Like/Create/:postid", PostlikeChain, PostLike);
+route.get("/Posts/Like/count/:postid", CountLikePost);
 route.post("/Posts/Comment/Create/:postid", PostCommentChain, PostComment);
 route.put("/Posts/Comment/Edit/:CommentId", EditCommentChain, UpdateComment);
 route.get("/Posts/Comment/All/:postid", GetAllComment);
