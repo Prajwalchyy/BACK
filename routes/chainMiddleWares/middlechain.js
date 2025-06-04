@@ -72,3 +72,13 @@ export const DeleteCommentChain = [
   AuthUserAccessToken,
   AuthorizeRole("admin", "author", "viewer"),
 ];
+
+//NOTIFICATION ______________________________________________________________________
+export const UserNotificationChain = [
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
+];
+export const NotificationSeenChain = [
+  AuthUserAccessToken,
+  AuthorizeRole("admin", "author", "viewer"),
+];

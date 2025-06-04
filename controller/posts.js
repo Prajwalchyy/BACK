@@ -1,5 +1,6 @@
 import { response } from "express";
 import db from "../database/dbconfig.js";
+import { Result } from "express-validator";
 
 export const CreatePosts = async (req, res) => {
   const { title, content } = req.body;
@@ -143,12 +144,20 @@ export const DeletePosts = async (req, res, next) => {
 };
 
 //Insert Posts Like_______________________________________________________________________________________
-//TODO: remaining send notification form like post
 export const PostLike = async (req, res) => {
   const AuthUserId = req.userid;
   const PostId = req.params.postid;
 
   try {
+    const CheckPost = "SELECT userid FROM posts WHERE posts_id=?";
+    const [PostsResult] = await db.query(CheckPost, [PostId]);
+    const PostOwner = PostsResult[0].userid;
+    // console.log(PostOwner);
+
+    // return res
+    //   .status(200)
+    //   .json({ message: "hello",PostsResult});
+
     const CheckLikesQuery = "SELECT * FROM likes WHERE post_id=? AND user_id=?";
     const [CheckResult] = await db.query(CheckLikesQuery, [PostId, AuthUserId]);
     // console.log(CheckResult);
@@ -161,14 +170,30 @@ export const PostLike = async (req, res) => {
         AuthUserId,
       ]);
 
-      return res
-        .status(200)
-        .json({ message: "You liked the post", LiekdResult });
+      const RecentLikeId = LiekdResult.insertId;
+      const Type = "like";
+
+      // console.log(`likeid=${RecentLikeId} receiverId=${PostOwner}`);
+
+      const NotificationQuery =
+        "INSERT INTO notifications (notification_type,notification_receiver_user_id,posts_id,like_id) VALUES (?,?,?,?)";
+      const [NotificationResult] = await db.query(NotificationQuery, [
+        Type,
+        PostOwner,
+        PostId,
+        RecentLikeId,
+      ]);
+
+      return res.status(200).json({
+        message: "You liked the post",
+        Like: LiekdResult,
+        Notification: NotificationResult,
+      });
     } else {
       const UnLikeQuery = "DELETE FROM likes WHERE post_id=? AND user_id=?";
       const [ResultUnlike] = await db.query(UnLikeQuery, [PostId, AuthUserId]);
 
-      return res.status(200).json({ message: "You unlike post" });
+      return res.status(200).json({ message: "You unlike post", ResultUnlike });
     }
   } catch (error) {
     console.log(error);
@@ -350,5 +375,66 @@ export const DeleteComment = async (req, res) => {
   }
 };
 
-//
-//TODO:notification
+// USer Notification____________________________________________________________________________________
+
+export const UserNotifications = async (req, res) => {
+  const AuthUser = req.userid;
+
+  try {
+    const FetchQuery =
+      "SELECT * FROM notifications WHERE notification_receiver_user_id=?";
+    const [FtechNotificationResult] = await db.query(FetchQuery, [AuthUser]);
+
+    return res
+      .status(200)
+      .json({ message: "All user notification", FtechNotificationResult });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Pronlem in Usernotification" });
+  }
+};
+
+// Notification seen ___________________________________________________________________________________
+
+export const NotificationSeen = async (req, res) => {
+  const AuthUser = req.userid;
+  const NotificationId = req.params.NotificationId;
+
+  try {
+    // const CheckOwnerQuery =
+    //   "SELECT posts.userid FROM notifications JOIN posts ON notifications.posts_id = posts.posts_id WHERE notification_id=?";
+
+    const CheckOwnerQuery =
+      "SELECT notification_receiver_user_id FROM notifications WHERE notification_id=?";
+
+    const [CheckOwnerResult] = await db.query(CheckOwnerQuery, [
+      NotificationId,
+    ]);
+
+    if (!CheckOwnerResult.length) {
+      return res.status(404).json({ message: "No notification found" });
+    }
+
+    console.log(CheckOwnerResult);
+
+    const OwnerUser = CheckOwnerResult[0].notification_receiver_user_id;
+    const IsOwner = OwnerUser === AuthUser;
+
+    console.log(OwnerUser, AuthUser);
+
+    if (!IsOwner) {
+      return res.status(403).json({ message: "Forbidden to access" });
+    }
+    // return res.json({ id: CheckOwnerResult });
+
+    const SeenQuery = "UPDATE notifications SET seen=? WHERE notification_id=?";
+    const [SeenResult] = await db.query(SeenQuery, [true, NotificationId]);
+
+    return res
+      .status(200)
+      .json({ message: "User seen the notification", SeenResult });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "pr0blem in NotificationSeen" });
+  }
+};

@@ -9,10 +9,12 @@ import {
   GetMineComment,
   GetOnePost,
   GetOneUserPosts,
+  NotificationSeen,
   PostComment,
   PostLike,
   UpdateComment,
   UpdatePost,
+  UserNotifications,
 } from "../controller/posts.js";
 import { UserLogin, UserRegister } from "../controller/users.js";
 import { AuthUserRefreshToken } from "../middleware/authUser.js";
@@ -25,10 +27,12 @@ import {
   GetMyCommentChain,
   GetOnePostChain,
   GetOneUserPostsChain,
+  NotificationSeenChain,
   PostCommentChain,
   PostlikeChain,
   UpdatePostChain,
   UserLoginChain,
+  UserNotificationChain,
   UserRegisterChain,
 } from "./chainMiddleWares/middlechain.js";
 
@@ -63,7 +67,16 @@ route.delete(
   DeleteComment
 );
 
-//notificarion_________________________________________________________________________________________
-// route.post("/Posts/Comment/Notification/Store/", StoreNotification);
+//Notification_________________________________________________________________________________________
+route.get(
+  "/Posts/Comment/Notification/User",
+  UserNotificationChain,
+  UserNotifications
+);
+route.put(
+  "/Posts/Comment/Notification/seen/:NotificationId",
+  NotificationSeenChain,
+  NotificationSeen
+);
 
 export default route;
