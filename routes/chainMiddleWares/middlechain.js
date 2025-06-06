@@ -1,5 +1,6 @@
 import { AuthUserAccessToken } from "../../middleware/authUser.js";
 import limiter from "../../middleware/loginLimit.js";
+import { QueryOptions } from "../../middleware/queryOptions/queryOptions.js";
 import { AuthorizeRole } from "../../middleware/roleAllowed/authorizeUserCheck.js";
 import ValidationError from "../../middleware/validation/validationError.js";
 import {
@@ -10,6 +11,7 @@ import {
   UserloginValidation,
   UserRegisterValidation,
 } from "../../middleware/validation/validationResult.js";
+import { PostsColums } from "../DbColumns/dbColumns.js";
 
 //authUsers______________________________________________________________________________
 export const UserRegisterChain = [UserRegisterValidation, ValidationError];
@@ -31,6 +33,7 @@ export const UpdatePostChain = [
 export const GetAllPostsChain = [
   AuthUserAccessToken,
   AuthorizeRole("admin", "author", "viewer"),
+  QueryOptions(PostsColums),
 ];
 export const GetOnePostChain = [
   AuthUserAccessToken,

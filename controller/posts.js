@@ -23,9 +23,40 @@ export const CreatePosts = async (req, res) => {
 
 export const GetAllPosts = async (req, res) => {
   try {
-    const GetPostsQuery = "SELECT * FROM posts";
-    const [result] = await db.query(GetPostsQuery);
-    res.status(200).json({ message: "All Posts Fetched Sucessfully", result });
+    const { order, sortBy, limit, offset, search, page } = req.queryOptions;
+    console.log(offset);
+
+    const CountQuery = `SELECT COUNT(*) as totalCount from posts where posts_title LIKE ?`;
+    const [CountResult] = await db.query(CountQuery, [`${search}%`]);
+
+    const TotalCount = CountResult[0].totalCount;
+    const TotalPages = Math.ceil(TotalCount / limit);
+
+    const GetPostsQuery = `SELECT * FROM posts
+    WHERE posts_title LIKE ?
+    ORDER BY ${sortBy} ${order}
+    LIMIT ? OFFSET ?`;
+
+    const [result] = await db.query(GetPostsQuery, [
+      `${search}%`,
+      limit,
+      offset,
+    ]);
+
+    return res.status(200).json({
+      message: "All Posts Fetched Sucessfully",
+      Peginations: {
+        order,
+        sortBy,
+        limit,
+        offset,
+        search,
+        currentpage: page,
+        TotalCount,
+        TotalPages,
+      },
+      result,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Probelm in GetAllPost" }, error);
