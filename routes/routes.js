@@ -35,6 +35,7 @@ import {
   UserNotificationChain,
   UserRegisterChain,
 } from "./chainMiddleWares/middlechain.js";
+import { calculateSum } from "../controller/math.js";
 
 const route = express.Router();
 
@@ -78,5 +79,9 @@ route.put(
   NotificationSeenChain,
   NotificationSeen
 );
+
+//test
+
+route.get("/sum", calculateSum);
 
 export default route;

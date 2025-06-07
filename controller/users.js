@@ -46,7 +46,7 @@ export const UserLogin = async (req, res) => {
     const [result] = await db.query(CheckUserQuery, [email, role]);
     const LoginRemaining = req.rateLimit.remaining; //req from loglimit
     const notmatch = () => {
-      return res.status(400).json({
+      return res.status(404).json({
         message: "Username or Password didn't match",
         loglimit: LoginRemaining,
       });
