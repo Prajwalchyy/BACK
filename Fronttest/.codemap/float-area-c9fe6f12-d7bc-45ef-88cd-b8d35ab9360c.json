@@ -1,0 +1,620 @@
+{
+    "type": "float-area",
+    "_widgets": [
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/App.jsx",
+                            "floatAreaId": "c9fe6f12-d7bc-45ef-88cd-b8d35ab9360c"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                },
+                                "position": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 20,
+                                "provider": "syntax",
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/RoutePath/RoutePaths.jsx",
+                            "floatAreaId": "c9fe6f12-d7bc-45ef-88cd-b8d35ab9360c"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                },
+                                "position": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 25,
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "src\\Components\\Form\\Login.jsx",
+                            "floatAreaId": "c9fe6f12-d7bc-45ef-88cd-b8d35ab9360c"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 11,
+                                    "column": 39
+                                },
+                                "position": {
+                                    "lineNumber": 11,
+                                    "column": 39
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 12,
+                            "firstPosition": {
+                                "lineNumber": 3,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": -15
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 42,
+                                "provider": "syntax",
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/utills/InputHandle.js",
+                            "floatAreaId": "c9fe6f12-d7bc-45ef-88cd-b8d35ab9360c"
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            },
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/Axios/CRUD/Axiospost.js",
+                            "floatAreaId": "c9fe6f12-d7bc-45ef-88cd-b8d35ab9360c"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                },
+                                "position": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 24,
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "src\\Axios\\ApiErrorsHandle.js",
+                            "floatAreaId": "c9fe6f12-d7bc-45ef-88cd-b8d35ab9360c"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                },
+                                "position": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 10,
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ]
+    ],
+    "_widths": [
+        600,
+        600,
+        600,
+        600,
+        600
+    ],
+    "_modelData": {
+        "connections": [
+            {
+                "startWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/App.jsx",
+                    "lineNumber": 14,
+                    "startColumn": 8,
+                    "endLineNumber": 14,
+                    "endColumn": 18,
+                    "word": "RoutePaths",
+                    "x": 148,
+                    "y": 309,
+                    "hide": false,
+                    "height": 19,
+                    "width": 77
+                },
+                "endWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/RoutePath/RoutePaths.jsx",
+                    "lineNumber": 6,
+                    "startColumn": 7,
+                    "endLineNumber": 6,
+                    "endColumn": 17,
+                    "word": "",
+                    "x": 796,
+                    "y": 157,
+                    "hide": false,
+                    "height": 19,
+                    "width": 77
+                },
+                "id": "65837343-02d6-4b85-992a-6265e12189ff",
+                "startAnchor": {
+                    "x": 225,
+                    "y": 309.4691358024691
+                },
+                "endAnchor": {
+                    "x": 796,
+                    "y": 175.53086419753086
+                },
+                "startControl": {
+                    "x": 256.15438623317783,
+                    "y": 309.4691358024691
+                },
+                "endControl": {
+                    "x": 753.1627189293805,
+                    "y": 175.53086419753086
+                },
+                "arrow": {
+                    "angle": 0,
+                    "x": 784,
+                    "y": 175.53086419753086
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/RoutePath/RoutePaths.jsx",
+                    "lineNumber": 14,
+                    "startColumn": 17,
+                    "endLineNumber": 14,
+                    "endColumn": 22,
+                    "word": "Login",
+                    "x": 873,
+                    "y": 309.00000190734863,
+                    "hide": false,
+                    "height": 19,
+                    "width": 39
+                },
+                "endWord": {
+                    "uri": "src\\Components\\Form\\Login.jsx",
+                    "lineNumber": 9,
+                    "startColumn": 25,
+                    "endLineNumber": 9,
+                    "endColumn": 30,
+                    "word": "",
+                    "x": 1579,
+                    "y": 161,
+                    "hide": false,
+                    "height": 19,
+                    "width": 38
+                },
+                "id": "d0d3ec30-7f08-468d-bbe1-4fb7114766eb",
+                "startAnchor": {
+                    "x": 912,
+                    "y": 314.40928605023555
+                },
+                "endAnchor": {
+                    "x": 1579,
+                    "y": 174.4858257069307
+                },
+                "startControl": {
+                    "x": 943.3182950976989,
+                    "y": 314.40928605023555
+                },
+                "endControl": {
+                    "x": 1535.937344240664,
+                    "y": 174.4858257069307
+                },
+                "arrow": {
+                    "angle": 0,
+                    "x": 1567,
+                    "y": 174.4858257069307
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "src\\Components\\Form\\Login.jsx",
+                    "lineNumber": 17,
+                    "startColumn": 22,
+                    "endLineNumber": 17,
+                    "endColumn": 31,
+                    "word": "Axiospost",
+                    "x": 1556,
+                    "y": 313,
+                    "hide": false,
+                    "height": 19,
+                    "width": 69
+                },
+                "endWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/Axios/CRUD/Axiospost.js",
+                    "lineNumber": 10,
+                    "startColumn": 14,
+                    "endLineNumber": 10,
+                    "endColumn": 23,
+                    "word": "",
+                    "x": 2162.0001220703125,
+                    "y": 739,
+                    "hide": false,
+                    "height": 19,
+                    "width": 69
+                },
+                "id": "8e018427-b7df-447e-9c3b-a8ed35c0f6fa",
+                "startAnchor": {
+                    "x": 1604.0140872292675,
+                    "y": 332
+                },
+                "endAnchor": {
+                    "x": 2182.986034841045,
+                    "y": 739
+                },
+                "startControl": {
+                    "x": 1604.0140872292675,
+                    "y": 350.40294337607963
+                },
+                "endControl": {
+                    "x": 2182.986034841045,
+                    "y": 713.6959528578905
+                },
+                "arrow": {
+                    "angle": 1.5707963267948966,
+                    "x": 2182.986034841045,
+                    "y": 727
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "src\\Components\\Form\\Login.jsx",
+                    "lineNumber": 16,
+                    "startColumn": 23,
+                    "endLineNumber": 16,
+                    "endColumn": 40,
+                    "word": "handleInputChange",
+                    "x": 1563,
+                    "y": 294,
+                    "hide": false,
+                    "height": 19,
+                    "width": 131
+                },
+                "endWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/utills/InputHandle.js",
+                    "lineNumber": 4,
+                    "startColumn": 14,
+                    "endLineNumber": 4,
+                    "endColumn": 31,
+                    "word": "",
+                    "x": 2162.0001220703125,
+                    "y": 119,
+                    "hide": false,
+                    "height": 19,
+                    "width": 131
+                },
+                "id": "47d290b1-59f9-4fe9-9a10-9b93354d4bac",
+                "startAnchor": {
+                    "x": 1661.0171494838169,
+                    "y": 294
+                },
+                "endAnchor": {
+                    "x": 2194.9829725864956,
+                    "y": 138
+                },
+                "startControl": {
+                    "x": 1661.0171494838169,
+                    "y": 285.0262188564493
+                },
+                "endControl": {
+                    "x": 2194.9829725864956,
+                    "y": 150.3389490723822
+                },
+                "arrow": {
+                    "angle": -1.5707963267948966,
+                    "x": 2194.9829725864956,
+                    "y": 150
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/Axios/CRUD/Axiospost.js",
+                    "lineNumber": 20,
+                    "startColumn": 7,
+                    "endLineNumber": 20,
+                    "endColumn": 16,
+                    "word": "ApiErrors",
+                    "x": 2108.0001220703125,
+                    "y": 929,
+                    "hide": false,
+                    "height": 19,
+                    "width": 69
+                },
+                "endWord": {
+                    "uri": "src\\Axios\\ApiErrorsHandle.js",
+                    "lineNumber": 1,
+                    "startColumn": 14,
+                    "endLineNumber": 1,
+                    "endColumn": 23,
+                    "word": "",
+                    "x": 2818.0001220703125,
+                    "y": 62,
+                    "hide": false,
+                    "height": 19,
+                    "width": 69
+                },
+                "id": "7eab29f9-72a3-4365-a223-95bcbb5067c4",
+                "startAnchor": {
+                    "x": 2150.279822185653,
+                    "y": 929
+                },
+                "endAnchor": {
+                    "x": 2844.720421954972,
+                    "y": 81
+                },
+                "startControl": {
+                    "x": 2150.279822185653,
+                    "y": 904.2422747791725
+                },
+                "endControl": {
+                    "x": 2844.720421954972,
+                    "y": 115.0418721786379
+                },
+                "arrow": {
+                    "angle": -1.5707963267948966,
+                    "x": 2844.720421954972,
+                    "y": 93
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "src\\Components\\Form\\Login.jsx",
+                    "lineNumber": 11,
+                    "startColumn": 35,
+                    "endLineNumber": 11,
+                    "endColumn": 43,
+                    "word": "useState",
+                    "x": 1656,
+                    "y": 199,
+                    "hide": false,
+                    "height": 19,
+                    "width": 61
+                },
+                "endWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/node_modules/%40types/react/index.d.ts",
+                    "lineNumber": 1680,
+                    "startColumn": 14,
+                    "endLineNumber": 1680,
+                    "endColumn": 22,
+                    "word": "",
+                    "x": 2062.0001220703125,
+                    "y": 94,
+                    "hide": true,
+                    "height": 19,
+                    "width": 1
+                },
+                "id": "e77e143e-3287-4338-aaac-28f573089ecb",
+                "startAnchor": {
+                    "x": 1717,
+                    "y": 199.98271553113716
+                },
+                "endAnchor": {
+                    "x": 2062.0001220703125,
+                    "y": 103.63962761424365
+                },
+                "startControl": {
+                    "x": 1747.8208012637635,
+                    "y": 199.98271553113716
+                },
+                "endControl": {
+                    "x": 2019.6215203326376,
+                    "y": 103.63962761424365
+                },
+                "arrow": {
+                    "angle": 0,
+                    "x": 2050.0001220703125,
+                    "y": 103.63962761424365
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/Fronttest/src/RoutePath/RoutePaths.jsx",
+                    "lineNumber": 4,
+                    "startColumn": 8,
+                    "endLineNumber": 4,
+                    "endColumn": 13,
+                    "word": "Login",
+                    "x": 804.0000203847885,
+                    "y": 119,
+                    "hide": false,
+                    "height": 19,
+                    "width": 38
+                },
+                "endWord": {
+                    "uri": "src\\Components\\Form\\Login.jsx",
+                    "lineNumber": 9,
+                    "startColumn": 25,
+                    "endLineNumber": 9,
+                    "endColumn": 30,
+                    "word": "",
+                    "x": 1579.0000814199448,
+                    "y": 161,
+                    "hide": false,
+                    "height": 19,
+                    "width": 38
+                },
+                "id": "5947b9ad-202e-407e-a074-710f5ec596ce",
+                "startAnchor": {
+                    "x": 842.0000203847885,
+                    "y": 129.52967733826256
+                },
+                "endAnchor": {
+                    "x": 1579.0000814199448,
+                    "y": 169.47032266173744
+                },
+                "startControl": {
+                    "x": 873.9531325959362,
+                    "y": 129.52967733826256
+                },
+                "endControl": {
+                    "x": 1535.0645521296167,
+                    "y": 169.47032266173744
+                },
+                "arrow": {
+                    "angle": 0,
+                    "x": 1567.0000814199448,
+                    "y": 169.47032266173744
+                }
+            }
+        ],
+        "annotations": [],
+        "highlights": []
+    }
+}
