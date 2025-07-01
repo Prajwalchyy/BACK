@@ -1,0 +1,355 @@
+{
+    "type": "float-area",
+    "_widgets": [
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "index.js",
+                            "floatAreaId": "2e19d649-847b-45ec-b699-859cd62c3fb5"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 59,
+                                    "column": 16
+                                },
+                                "position": {
+                                    "lineNumber": 59,
+                                    "column": 16
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 47,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": -1
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 67,
+                                "provider": "syntax",
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/BackEnd/routes/routes.js",
+                            "floatAreaId": "2e19d649-847b-45ec-b699-859cd62c3fb5"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                },
+                                "position": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 38,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 96,
+                                "provider": "syntax",
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ],
+        [
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/BackEnd/routes/chainMiddleWares/middlechain.js",
+                            "floatAreaId": "2e19d649-847b-45ec-b699-859cd62c3fb5"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                },
+                                "position": {
+                                    "lineNumber": 1,
+                                    "column": 1
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 97,
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            },
+            {
+                "widget": {
+                    "constructionOptions": {
+                        "factoryId": "code-editor-opener",
+                        "options": {
+                            "kind": "navigatable",
+                            "uri": "controller\\users.js",
+                            "floatAreaId": "2e19d649-847b-45ec-b699-859cd62c3fb5"
+                        }
+                    },
+                    "innerWidgetState": {
+                        "cursorState": [
+                            {
+                                "inSelectionMode": false,
+                                "selectionStart": {
+                                    "lineNumber": 41,
+                                    "column": 14
+                                },
+                                "position": {
+                                    "lineNumber": 41,
+                                    "column": 14
+                                }
+                            }
+                        ],
+                        "viewState": {
+                            "scrollLeft": 0,
+                            "firstPosition": {
+                                "lineNumber": 1,
+                                "column": 1
+                            },
+                            "firstPositionDeltaTop": 0
+                        },
+                        "contributionsState": {
+                            "editor.contrib.folding": {
+                                "lineCount": 118,
+                                "provider": "syntax",
+                                "foldedImports": false
+                            },
+                            "editor.contrib.wordHighlighter": false
+                        }
+                    }
+                },
+                "width": 600,
+                "height": 450,
+                "spacing": 0
+            }
+        ]
+    ],
+    "_widths": [
+        600,
+        600,
+        600
+    ],
+    "_modelData": {
+        "connections": [
+            {
+                "startWord": {
+                    "uri": "index.js",
+                    "lineNumber": 59,
+                    "startColumn": 14,
+                    "endLineNumber": 59,
+                    "endColumn": 19,
+                    "word": "route",
+                    "x": 194,
+                    "y": 289.00000190734863,
+                    "hide": false,
+                    "height": 19,
+                    "width": 39
+                },
+                "endWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/BackEnd/routes/routes.js",
+                    "lineNumber": 42,
+                    "startColumn": 7,
+                    "endLineNumber": 42,
+                    "endColumn": 12,
+                    "word": "",
+                    "x": 796,
+                    "y": 138,
+                    "hide": false,
+                    "height": 19,
+                    "width": 39
+                },
+                "id": "2904ce5b-ee70-4298-baf7-360e051ed838",
+                "startAnchor": {
+                    "x": 233,
+                    "y": 293.6088058322767
+                },
+                "endAnchor": {
+                    "x": 796,
+                    "y": 152.39119607507192
+                },
+                "startControl": {
+                    "x": 264.03848474178346,
+                    "y": 293.6088058322767
+                },
+                "endControl": {
+                    "x": 753.3220834800477,
+                    "y": 152.39119607507192
+                },
+                "arrow": {
+                    "angle": 0,
+                    "x": 784,
+                    "y": 152.39119607507192
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/BackEnd/routes/routes.js",
+                    "lineNumber": 48,
+                    "startColumn": 35,
+                    "endLineNumber": 48,
+                    "endColumn": 52,
+                    "word": "UserRegisterChain",
+                    "x": 1012,
+                    "y": 252,
+                    "hide": false,
+                    "height": 19,
+                    "width": 131
+                },
+                "endWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/BackEnd/routes/chainMiddleWares/middlechain.js",
+                    "lineNumber": 18,
+                    "startColumn": 14,
+                    "endLineNumber": 18,
+                    "endColumn": 31,
+                    "word": "",
+                    "x": 1506,
+                    "y": 385,
+                    "hide": false,
+                    "height": 19,
+                    "width": 131
+                },
+                "id": "c5bcdab1-2649-49bb-b90b-c77d0a5a275f",
+                "startAnchor": {
+                    "x": 1112.7857142857142,
+                    "y": 271
+                },
+                "endAnchor": {
+                    "x": 1536.2142857142858,
+                    "y": 385
+                },
+                "startControl": {
+                    "x": 1112.7857142857142,
+                    "y": 279.31915115033195
+                },
+                "endControl": {
+                    "x": 1536.2142857142858,
+                    "y": 373.5611671682936
+                },
+                "arrow": {
+                    "angle": 1.5707963267948966,
+                    "x": 1536.2142857142858,
+                    "y": 373
+                }
+            },
+            {
+                "startWord": {
+                    "uri": "file:///e%3A/ALL%20CODES%20HERE%20NOW/OWN%20REACT%20COLLECTION/Mission%20Back/BackEnd/routes/routes.js",
+                    "lineNumber": 48,
+                    "startColumn": 54,
+                    "endLineNumber": 48,
+                    "endColumn": 66,
+                    "word": "UserRegister",
+                    "x": 1158,
+                    "y": 252,
+                    "hide": false,
+                    "height": 19,
+                    "width": 92
+                },
+                "endWord": {
+                    "uri": "controller\\users.js",
+                    "lineNumber": 5,
+                    "startColumn": 14,
+                    "endLineNumber": 5,
+                    "endColumn": 26,
+                    "word": "",
+                    "x": 1506.0000610351562,
+                    "y": 644,
+                    "hide": false,
+                    "height": 19,
+                    "width": 92
+                },
+                "id": "2ab5bb7c-4119-44a2-a273-b01428202bf6",
+                "startAnchor": {
+                    "x": 1212.433674948556,
+                    "y": 271
+                },
+                "endAnchor": {
+                    "x": 1543.5663860866002,
+                    "y": 644
+                },
+                "startControl": {
+                    "x": 1212.433674948556,
+                    "y": 294.9305640667956
+                },
+                "endControl": {
+                    "x": 1543.5663860866002,
+                    "y": 611.095474408156
+                },
+                "arrow": {
+                    "angle": 1.5707963267948966,
+                    "x": 1543.5663860866002,
+                    "y": 632
+                }
+            }
+        ],
+        "annotations": [],
+        "highlights": []
+    }
+}

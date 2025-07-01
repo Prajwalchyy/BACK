@@ -46,7 +46,7 @@ export const UserLogin = async (req, res) => {
     const [result] = await db.query(CheckUserQuery, [email, role]);
     const LoginRemaining = req.rateLimit.remaining; //req from loglimit
     const notmatch = () => {
-      return res.status(404).json({
+      return res.status(401).json({
         message: "Username or Password didn't match",
         loglimit: LoginRemaining,
       });
@@ -113,23 +113,5 @@ export const AllUserList = async (req, res) => {
 };
 
 export const Test = (req, res) => {
-  if ((a = 1)) {
-    res.status(400).json({ message: "1" });
-  }
-  if ((b = 2)) {
-    res.status(400).json({ message: "2" });
-  }
-  if ((c = 3)) {
-    res.status(400).json({ message: "2" });
-  }
-  if ((d = 4)) {
-    res.status(400).json({ message: "4" });
-  }
-  if ((e = 5)) {
-    res.status(400).json({ message: "3" });
-  }
-  if ((f = rr)) {
-    res.status(400).json({ message: "5" });
-  }
   res.status(200).json({ message: "You are valid user" });
 };

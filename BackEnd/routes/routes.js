@@ -42,7 +42,7 @@ import { SendMessage } from "../controller/chat.controller.js";
 const route = express.Router();
 
 //Auth Token_________________________________________________________________
-route.post("/RefreshToken", AuthUserRefreshToken);
+route.get("/RefreshToken", AuthUserRefreshToken);
 
 //UserAuth__________________________________________________________________
 route.post("/Users/UserRegister", UserRegisterChain, UserRegister);

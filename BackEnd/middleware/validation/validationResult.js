@@ -9,7 +9,7 @@ export const UserRegisterValidation = [
 ];
 
 export const UserloginValidation = [
-  body("email").isEmail().withMessage("Email must be valid"),
+  body("email").notEmpty().withMessage("Email is required").isEmail().withMessage("Email must be valid"),
   body("password").notEmpty().withMessage("Password is required"),
 ];
 
